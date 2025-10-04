@@ -1,0 +1,91 @@
+.reader-view {
+  flex: 1;
+  background: #f0f0f0;
+  overflow-y: auto;
+  padding: 30px 20px;
+}
+
+.document-container {
+  max-width: 850px;
+  margin: 0 auto;
+  background: white;
+  min-height: 1100px;
+  box-shadow: 
+    0 0 0 1px rgba(0, 0, 0, 0.05),
+    0 2px 8px rgba(0, 0, 0, 0.08),
+    0 8px 20px rgba(0, 0, 0, 0.06);
+  border-radius: 2px;
+  position: relative;
+}
+
+/* 模拟Word的页眉区域 */
+.document-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #e0e0e0 10%, #e0e0e0 90%, transparent);
+}
+
+.document-content {
+  padding: 96px 96px 96px 96px; /* Word 默认边距：2.54cm ≈ 96px */
+}
+
+.text-content {
+  font-family: 'Calibri', 'Arial', '微软雅黑', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #000000;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
+  position: relative;
+  text-align: justify; /* 两端对齐，更像书籍排版 */
+  /* Word默认文本设置 */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* 段落间距 */
+  text-indent: 0;
+  letter-spacing: 0.02em; /* 增加字间距，提高可读性 */
+}
+
+.cursor-blink {
+  display: inline-block;
+  width: 2px;
+  height: 20px;
+  background: #000;
+  margin-left: 2px;
+  animation: blink 1s step-end infinite;
+  vertical-align: text-bottom;
+}
+
+@keyframes blink {
+  0%, 50% {
+    opacity: 1;
+  }
+  51%, 100% {
+    opacity: 0;
+  }
+}
+
+/* 滚动条样式 */
+.reader-view::-webkit-scrollbar {
+  width: 12px;
+}
+
+.reader-view::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.reader-view::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 6px;
+}
+
+.reader-view::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+

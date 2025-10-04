@@ -1,0 +1,160 @@
+# WorkWhale - .gitignore
+
+# 依赖文件
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+.pnpm-store/
+
+# 构建输出
+dist/
+dist-ssr/
+build/
+*.local
+
+# 环境变量
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# 日志文件
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# 编辑器和IDE
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+*.sublime-project
+*.sublime-workspace
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+.vscode-test
+
+# 操作系统文件
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msix
+*.msm
+*.msp
+*.lnk
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
+
+# 测试覆盖率
+coverage/
+*.lcov
+.nyc_output/
+
+# Storybook
+storybook-static/
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+.parcel-cache/
+.next/
+.nuxt/
+.vuepress/dist
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# 生产环境特定文件
+.vercel
+.netlify
+
+# 敏感信息（如果有）
+*.pem
+*.key
+secrets/
+credentials/
+
+# 备份文件
+*.bak
+*.backup
+*~
+
+# 调试文件
+debug/
+.vscode/chrome/
+
+# 其他
+*.orig
+.grunt
+bower_components
+.lock-wscript
+.npm
+.eslintcache
+.stylelintcache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+.node_repl_history
+*.tgz
+.yarn-integrity
+.env.test
+
+# 测试文件（不应提交到仓库）
+红丸觉醒 第三版.epub
+*.epub
+*.pdf
+*.mobi
+*.azw3
+
+# 项目特定（可选）
+# 如果不想提交示例书籍，取消注释
+# public/sample.txt
+
+# 用户上传的书籍（如果有）
+uploads/
+books/

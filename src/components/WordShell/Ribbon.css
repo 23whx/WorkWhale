@@ -1,0 +1,341 @@
+.ribbon {
+  background: #f3f3f3;
+  border-bottom: 1px solid #d1d1d1;
+}
+
+.ribbon-tabs {
+  display: flex;
+  background: white;
+  border-bottom: 1px solid #d1d1d1;
+  padding: 0 10px;
+}
+
+.ribbon-tab {
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #333;
+  transition: background 0.2s;
+  border-bottom: 2px solid transparent;
+}
+
+.ribbon-tab:hover {
+  background: #e6e6e6;
+}
+
+.ribbon-tab.active {
+  border-bottom-color: #2b579a;
+  background: #f3f3f3;
+}
+
+/* 文件和帮助标签特殊样式 */
+.ribbon-tab.file-tab {
+  background: #2b579a;
+  color: white;
+  font-weight: 600;
+}
+
+.ribbon-tab.file-tab:hover {
+  background: #204872;
+}
+
+.ribbon-tab.help-tab {
+  margin-left: auto;
+  color: #2b579a;
+}
+
+.ribbon-content {
+  display: flex;
+  padding: 8px 10px;
+  gap: 15px;
+  overflow-x: auto;
+  align-items: flex-start;
+}
+
+.ribbon-group {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #d1d1d1;
+  padding-right: 15px;
+  min-height: 80px;
+}
+
+.ribbon-group:last-child {
+  border-right: none;
+}
+
+.ribbon-group-wide {
+  min-width: 280px;
+}
+
+.ribbon-group-styles {
+  min-width: 400px;
+}
+
+.ribbon-group-header {
+  font-size: 11px;
+  color: #666;
+  margin-bottom: 5px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+.ribbon-buttons {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+/* 剪贴板组特殊布局 */
+.clipboard-group {
+  display: flex;
+  gap: 8px;
+}
+
+.ribbon-btn-large {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px 14px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  min-height: 65px;
+}
+
+.ribbon-btn-large:hover {
+  background: #e6e6e6;
+  border-color: #d1d1d1;
+}
+
+.ribbon-btn-column {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ribbon-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 12px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+
+.ribbon-btn:hover {
+  background: #e6e6e6;
+  border-color: #d1d1d1;
+}
+
+.ribbon-btn.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ribbon-btn.disabled:hover {
+  background: transparent;
+  border-color: transparent;
+}
+
+.btn-icon {
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.btn-label {
+  font-size: 11px;
+  color: #333;
+}
+
+.ribbon-btn-small {
+  padding: 6px 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 12px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.ribbon-btn-small:hover {
+  background: #e6e6e6;
+  border-color: #d1d1d1;
+}
+
+/* 字体选择器 */
+.ribbon-select {
+  padding: 4px 8px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.ribbon-select-size {
+  width: 50px;
+  padding: 4px;
+  border: 1px solid #d1d1d1;
+  border-radius: 2px;
+  font-size: 12px;
+  background: white;
+  cursor: pointer;
+}
+
+/* 图标按钮 */
+.ribbon-btn-icon {
+  padding: 4px 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 13px;
+  transition: all 0.2s;
+  min-width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbon-btn-icon:hover {
+  background: #e6e6e6;
+  border-color: #d1d1d1;
+}
+
+/* 微小按钮（字号增减） */
+.ribbon-btn-tiny {
+  padding: 2px 4px;
+  border: 1px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 10px;
+  transition: all 0.2s;
+  width: 18px;
+  height: 18px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ribbon-btn-tiny:hover {
+  background: #e6e6e6;
+  border-color: #d1d1d1;
+}
+
+/* 字体控制行 */
+.ribbon-font-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.font-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* 段落控制行 */
+.paragraph-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.paragraph-row {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+
+/* 样式按钮 */
+.styles-group {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.style-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 10px;
+  border: 1px solid #d1d1d1;
+  background: white;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+  min-width: 80px;
+  min-height: 60px;
+  gap: 4px;
+}
+
+.style-btn:hover {
+  background: #e6e6e6;
+  border-color: #2b579a;
+}
+
+.style-label {
+  font-size: 10px;
+  color: #666;
+  white-space: nowrap;
+}
+
+/* 响应式设计 */
+@media (max-width: 1200px) {
+  .ribbon-content {
+    gap: 10px;
+  }
+  
+  .ribbon-group-wide {
+    min-width: 200px;
+  }
+  
+  .ribbon-group-styles {
+    min-width: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .ribbon-tabs {
+    overflow-x: auto;
+    padding: 0 5px;
+  }
+  
+  .ribbon-tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+  
+  .ribbon-content {
+    gap: 8px;
+    padding: 5px;
+  }
+  
+  .ribbon-group {
+    padding-right: 10px;
+    min-height: 60px;
+  }
+  
+  .ribbon-group-wide,
+  .ribbon-group-styles {
+    min-width: auto;
+  }
+  
+  .style-btn {
+    min-width: 60px;
+    min-height: 50px;
+    padding: 6px 8px;
+  }
+}
+
