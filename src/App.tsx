@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect, useState, useCallback, useRef } from 'react';
 import { TitleBar } from './components/WordShell/TitleBar';
 import { Ribbon } from './components/WordShell/Ribbon';
 import { StatusBar } from './components/WordShell/StatusBar';
@@ -285,7 +285,7 @@ function App() {
   }, [setRecentBooks]);
 
   // 键盘事件处理
-  const handleKeyPress = useCallback((key: string, event: KeyboardEvent) => {
+  const handleKeyPress = useCallback((key: string) => {
     console.log('按键触发:', key, '当前模式:', viewMode);
     
     // 安全获取热键配置，如果不存在则使用默认值

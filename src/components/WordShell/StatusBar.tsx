@@ -13,7 +13,6 @@ interface StatusBarProps {
 }
 
 export const StatusBar: React.FC<StatusBarProps> = ({ 
-  pageCount = 1, 
   wordCount = 0,
   progress = 0,
   totalChars = 0,

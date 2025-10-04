@@ -89,11 +89,10 @@ export async function cleanupDuplicateBooks() {
   });
   
   // 对于每组重复的书籍，只保留最新的一本
-  for (const [key, group] of bookGroups) {
+  for (const group of bookGroups.values()) {
     if (group.length > 1) {
       // 按最后阅读时间排序，保留最新的
       group.sort((a, b) => (b.lastReadAt || 0) - (a.lastReadAt || 0));
-      const keepBook = group[0];
       
       // 删除其他重复项
       for (let i = 1; i < group.length; i++) {

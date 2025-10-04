@@ -1,5 +1,5 @@
 // 文件解析器
-import { BookSource, FileType, ChapterIndex } from '@/types';
+import { BookSource, ChapterIndex } from '@/types';
 
 // 生成文件ID（基于文件名和大小，确保同一文件ID相同）
 function generateFileId(name: string, size: number): string {
@@ -111,40 +111,41 @@ async function parseTxt(file: File): Promise<BookSource> {
 }
 
 // PDF 解析器（简化版，实际需要 PDF.js）
-async function parsePdf(file: File): Promise<BookSource> {
-  try {
-    const { getDocument, GlobalWorkerOptions } = await import('pdfjs-dist');
-    
-    // 设置 worker
-    GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js`;
-    
-    const arrayBuffer = await file.arrayBuffer();
-    const pdf = await getDocument({ data: arrayBuffer }).promise;
-    
-    let fullText = '';
-    
-    for (let i = 1; i <= pdf.numPages; i++) {
-      const page = await pdf.getPage(i);
-      const content = await page.getTextContent();
-      const pageText = content.items
-        .map((item: any) => item.str)
-        .join(' ');
-      fullText += pageText + '\n\n';
-    }
+// 暂时不使用，保留作为未来扩展
+// async function parsePdf(file: File): Promise<BookSource> {
+//   try {
+//     const { getDocument, GlobalWorkerOptions } = await import('pdfjs-dist');
+//     
+//     // 设置 worker
+//     GlobalWorkerOptions.workerSrc = `https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/build/pdf.worker.min.js`;
+//     
+//     const arrayBuffer = await file.arrayBuffer();
+//     const pdf = await getDocument({ data: arrayBuffer }).promise;
+//     
+//     let fullText = '';
+//     
+//     for (let i = 1; i <= pdf.numPages; i++) {
+//       const page = await pdf.getPage(i);
+//       const content = await page.getTextContent();
+//       const pageText = content.items
+//         .map((item: any) => item.str)
+//         .join(' ');
+//       fullText += pageText + '\n\n';
+//     }
 
-    return {
-      id: generateFileId(file.name, file.size),
-      type: 'pdf',
-      title: file.name.replace(/\.pdf$/i, ''),
-      content: fullText.trim(),
-      chapters: [],
-      size: file.size,
-    };
-  } catch (error) {
-    console.error('PDF 解析失败:', error);
-    throw new Error('PDF 解析失败，请尝试其他文件');
-  }
-}
+//     return {
+//       id: generateFileId(file.name, file.size),
+//       type: 'pdf',
+//       title: file.name.replace(/\.pdf$/i, ''),
+//       content: fullText.trim(),
+//       chapters: [],
+//       size: file.size,
+//     };
+//   } catch (error) {
+//     console.error('PDF 解析失败:', error);
+//     throw new Error('PDF 解析失败，请尝试其他文件');
+//   }
+// }
 
 // 清理 HTML 文本，保留结构和可读性
 function cleanHtmlText(element: HTMLElement): string {
@@ -272,11 +273,11 @@ async function parseEpub(file: File): Promise<BookSource> {
     let fullText = '';
     const sections: { href: string; start: number; end: number }[] = [];
     
-    console.log('📘 EPUB 解析开始，spine 数:', spine.items.length);
+    console.log('📘 EPUB 解析开始，spine 数:', spine.length);
     
     // 遍历 spine，记录每节文本的起止位置
-    for (let i = 0; i < spine.items.length; i++) {
-      const item = spine.items[i];
+    for (let i = 0; i < spine.length; i++) {
+      const item = spine[i];
       try {
         const startPos = fullText.length;
         
@@ -290,7 +291,7 @@ async function parseEpub(file: File): Promise<BookSource> {
           
           if (text.length > 0) {
             fullText += text + '\n\n';
-            sections.push({ href: item.href, start: startPos, end: fullText.length });
+            sections.push({ href: item.href || '', start: startPos, end: fullText.length });
             console.log(`✓ 第 ${i + 1} 节: ${text.length} 字`);
           }
         }
@@ -455,7 +456,7 @@ async function parseEpub(file: File): Promise<BookSource> {
           
           // 尝试在前一章节和当前章节的范围内分段
           const prevChapter = chapters[i - 1];
-          const rangeLength = prevChapter.end - prevChapter.start;
+          const rangeLength = (prevChapter.end ?? fullText.length) - prevChapter.start;
           
           if (rangeLength > 100) {
             // 如果范围足够大，平均分配
@@ -480,7 +481,7 @@ async function parseEpub(file: File): Promise<BookSource> {
       
       console.log('📖 从TOC提取到的章节数:', chapters.length);
       chapters.forEach((ch, idx) => {
-        console.log(`  ${idx + 1}. "${ch.title}" [${ch.start} - ${ch.end}] (${ch.end - ch.start} 字)`);
+        console.log(`  ${idx + 1}. "${ch.title}" [${ch.start} - ${ch.end ?? fullText.length}] (${(ch.end ?? fullText.length) - ch.start} 字)`);
       });
 
       // 质量评估：若目录项太少或位置重复比例高，则回退为全文识别
@@ -543,7 +544,7 @@ async function parseEpub(file: File): Promise<BookSource> {
 
 // 统一解析入口
 export async function parseFile(file: File): Promise<BookSource> {
-  const ext = file.name.split('.').pop()?.toLowerCase() as FileType;
+  const ext = file.name.split('.').pop()?.toLowerCase();
   
   switch (ext) {
     case 'txt':
@@ -553,7 +554,7 @@ export async function parseFile(file: File): Promise<BookSource> {
     case 'pdf':
       throw new Error('PDF 格式暂不支持，请使用 TXT 或 EPUB 格式');
     default:
-      throw new Error(`不支持的文件格式: ${ext?.toUpperCase() || '未知'}。请使用 TXT 或 EPUB 格式。`);
+      throw new Error(`不支持的文件格式: ${ext ? ext.toUpperCase() : '未知'}。请使用 TXT 或 EPUB 格式。`);
   }
 }
 
