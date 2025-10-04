@@ -9,10 +9,22 @@
   "orientation": "any",
   "icons": [
     {
-      "src": "/word-icon.svg",
+      "src": "/icon.webp",
       "sizes": "any",
-      "type": "image/svg+xml",
+      "type": "image/webp",
       "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192.webp",
+      "sizes": "192x192",
+      "type": "image/webp",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.webp",
+      "sizes": "512x512",
+      "type": "image/webp",
+      "purpose": "any"
     },
     {
       "src": "/icon-192.png",
@@ -48,7 +60,7 @@
       "short_name": "阅读",
       "description": "快速开始阅读",
       "url": "/",
-      "icons": [{ "src": "/word-icon.svg", "sizes": "96x96" }]
+      "icons": [{ "src": "/icon.webp", "sizes": "96x96" }]
     }
   ],
   "related_applications": [],
